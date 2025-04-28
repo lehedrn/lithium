@@ -60,18 +60,14 @@ class TracedLogger:
         
     def _log(self, level: str, message: str, *args, **kwargs):
         """
-        记录日志，自动添加trace_id
-        
-        Args:
-            level: 日志级别
-            message: 日志消息
-            *args: 用于格式化消息的位置参数
-            **kwargs: 关键字参数
+        记录日志，自动添加trace_id，并调整depth使caller信息正确显示
         """
         # 确保存在trace_id
         if get_trace_id() is None:
             set_trace_id()
-        return getattr(self._logger, level)(message, *args, **kwargs)
+        # 使用opt调整深度，跳过包装调用
+        opt_logger = self._logger.opt(depth=2)
+        return getattr(opt_logger, level)(message, *args, **kwargs)
     
     def debug(self, message: str, *args, **kwargs):
         return self._log("debug", message, *args, **kwargs)
@@ -168,7 +164,8 @@ def setup_logger() -> None:
             "<level>{message}</level>"
         ),
         filter=TraceIDFilter(),
-        enqueue=True  # 启用异步写入
+        # 异步写入会导致控制台输出乱序，在开发阶段还是不建议使用
+        # enqueue=True  # 启用异步写入
     )
     
     # 配置文件输出

@@ -1,22 +1,31 @@
 """
 主应用入口
 """
+
+from app.utils.logger import logger
+from app.config.config_loader import config
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from contextlib import asynccontextmanager
 
-from app.utils.logger import get_logger
 
-# 获取日志实例
-logger = get_logger()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # 应用启动
+    logger.info("应用启动")
+    yield
+    # 应用关闭
+    logger.info("应用关闭")
 
 # 创建FastAPI应用
 app = FastAPI(
-    title="Lithium",
-    version="0.1.0",
+    title=config.get("app", {}).get("name", "Lithium"),
+    version=config.get("app", {}).get("version", "0.1.0"),
     description="多智能体协调引擎API",
-    docs_url="/api/docs",
-    redoc_url="/api/redoc",
-    openapi_url="/api/openapi.json"
+    docs_url=config.get("api", {}).get("prefix", "/api/v1") + "/docs",
+    redoc_url=config.get("api", {}).get("prefix", "/api/v1") + "/redoc",
+    openapi_url=config.get("api", {}).get("prefix", "/api/v1") + "/openapi.json",
+    lifespan=lifespan
 )
 
 # 配置CORS
@@ -28,17 +37,22 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.on_event("startup")
-async def startup_event():
-    """应用启动时的处理"""
-    logger.info("应用启动")
-    
-@app.on_event("shutdown")
-async def shutdown_event():
-    """应用关闭时的处理"""
-    logger.info("应用关闭")
-    
-@app.get("/")
+@app.get(config.get("api", {}).get("prefix", "/api/v1") + "/")
 async def root():
     """根路由"""
-    return {"message": "Welcome to Lithium Multi-Agent Engine"} 
+    return {"message": f"Welcome to {config.get('app', {}).get('name', 'Lithium')} Multi-Agent Engine"}
+
+if __name__ == "__main__":
+    import uvicorn
+
+    host = config.get("api", {}).get("host", "0.0.0.0")
+    port = config.get("api", {}).get("port", 8000)
+    debug = config.get("app", {}).get("debug", False)
+
+    logger.info(f"启动服务器： host={host}, port={port}, reload={debug}")
+    uvicorn.run(
+        "app.main:app",
+        host=host,
+        port=port,
+        reload=debug
+    )

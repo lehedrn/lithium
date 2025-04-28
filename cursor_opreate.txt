@@ -70,3 +70,11 @@ __init__.py文件目前不需要添加代码，只要创建以及添加注释即
 我希望加载成功时候应该把加载到的信息打印出来
 
 在examples中添加使用示例，另外你又忘记总结会话内容并追加到Changelog.md的更新日志中
+
+@main.py 编写一下主入口
+
+@run_main.bat 编写启动main.py的bat脚本，通过set PYTHONPATH的方式
+
+日志输出的{name}:{function}:{line}有问题，都是输出logger中的输出位置，我希望输出的真实的代码输出位置
+
+配置文件的监视有问题，有文件发生变化，都会引起重新加载。实际上，只要configs文件夹下的config_{env}.yml发生变化才要重新加载。
