@@ -45,3 +45,14 @@ __init__.py文件目前不需要添加代码，只要创建以及添加注释即
 以设置Python Path的方式运行
 
 这个没有按照想象中的输出
+
+@logger.py 完善日志功能，考虑：
+1.日志异步写入
+2.添加链路追踪id(trace_id)
+
+
+1.trace_id太长了，
+2.不需要TraceLogger，直接集成到_logger中
+
+
+日志没有把trace_id打印出来，检查下是不是应该调整config文件中关于日志的format，或者是其他问题
