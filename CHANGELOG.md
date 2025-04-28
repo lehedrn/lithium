@@ -23,6 +23,9 @@
 - 创建FastAPI应用入口
 - 添加依赖
   - PyYAML 6.0.1 用于配置文件解析
+- 添加配置加载器使用示例 (`examples/config_demo.py`)
+  - 演示如何通过全局 `config` 获取配置项
+  - 演示配置自动重载功能
 
 ### 变更
 - 项目名称更改为 Lithium

@@ -1,4 +1,4 @@
 @echo off
 set PYTHONPATH=%~dp0..
-python %~dp0logger_demo.py
+python %~dp0config_demo.py
 pause 
