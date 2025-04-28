@@ -1,0 +1,9 @@
+---
+description: Ensures the project uses Conda for environment and managing dependencies, promoting consistent and reproducible builds.
+globs: **/environment.yml
+---
+- Use conda for create vitrual environment
+- Use conda for dependency management.
+- Use conda when installing depdendencies.
+- Use pip when conda could't find the dependency
+- all depdendencies must specify exact version

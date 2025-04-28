@@ -1,0 +1,36 @@
+---
+description: 用于项目目录结构的规范、技术栈、注意事项
+globs: **
+alwaysApply: false
+---
+
+## 项目结构
+
+- `app/`: 主应用程序代码,Package类型
+  - `api/`: API接口,Package类型
+  - `core/`: 核心功能,Package类型
+  - `model/`: 数据库模型,Package类型
+  - `schema/`: Pydantic模型,Package类型
+  - `service/`: 业务逻辑,Package类型
+  - `config/`: 加载配置文件,Package类型
+- `tests/`: 测试文件
+- `examples/`: 示例代码
+- `migrations/`: 数据库迁移
+- `docs/`: 项目文档
+- `scripts/:` 脚本文件
+- `configs/`: 存放配置文件,eg: config.yml.example, config_dev.yml, config_{env}.yml
+- `environment.yml`: 用于管理conda环境的依赖包
+- `requirements.txt`: 用于管理conda中不可用的依赖包
+- `README.md`： 用于项目的介绍，包括 项目名称、项目描述、技术栈、项目结构、开发环境配置、运行环境、功能/特性
+- `CHANGELOG.md`： 用于记录项目每次的更新日志
+
+## 技术栈
+
+- Python 3.12
+- fastapi
+- sqlalchemy
+
+## 注意事项
+
+- 依赖包必须先从conda中search
+- 只有conda中没有的依赖包采用pip install

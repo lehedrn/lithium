@@ -1,0 +1,31 @@
+# 应用配置
+app:
+  name: "lithium"
+  version: "0.1.0"
+  debug: true
+
+# API配置
+api:
+  host: "0.0.0.0"
+  port: 8000
+  prefix: "/api/v1"
+
+# 日志配置
+log:
+  dir: "logs"  # 日志根目录
+  console:
+    level: "DEBUG"  # 开发环境使用DEBUG级别
+    colorize: true
+    format: "<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>"
+  file:
+    level: "DEBUG"
+    format: "{time:YYYY-MM-DD HH:mm:ss.SSS} | {level: <8} | {name}:{function}:{line} - {message}"
+    filename: "lithium.log"
+    rotation: "1 MB"      # 每1MB切割一次
+    retention: "7 days"   # 保留7天
+    compression: "zip"    # 压缩格式
+    encoding: "utf-8"
+    enqueue: true        # 异步写入
+    backtrace: true      # 异常回溯
+    diagnose: true       # 诊断信息
+

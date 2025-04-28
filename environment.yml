@@ -1,0 +1,15 @@
+name: lithium
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12
+  - pip
+  - uvicorn=0.27.1
+  - fastapi=0.109.2
+  - sqlalchemy=2.0.27
+  - pydantic=2.6.1
+  - python-dotenv=1.0.1
+  - pytest=8.0.1
+  - loguru=0.7.2
+  - pyyaml=6.0.1 

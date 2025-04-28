@@ -1,0 +1,47 @@
+创建python项目，这是一个多智能体引擎，它可以协调多个不同智能体进行分工协作，并最终以api接口的形式供外部系统调用。现在，让我们根据规范先创建项目基础的目录结构
+
+目前不需要langchain和openai
+
+你没有根据规范生成CHANGELOG.md
+
+
+让我们来项创建虚拟环境吧
+
+我已经激活虚拟环境，并且多智能体框架命名为 lithium， 虚拟环境也是 lithium
+
+1.创建主应用入口文件
+2.添加日志模块，集成框架loguru，要求：
+- 日志定义 控制台输出、文件输出
+- 文件输出需要配置按天备份、按文件大小1M切割一份、文件只保留7天、文件需要压缩
+- 需要在配置文件config.yml中添加对应的配置：日志文件根目录、控制台日志级别、文件日志输出的相关配置
+
+1.我们先来确认下config中日志配置的形式，我觉得应该是类似这样的形式更优雅：
+log:
+  dir:
+  console:
+      message_formate:
+      levele:
+2.日志模块，应该放在app/utils更合理
+
+
+1.logger.py中没有内容
+2.目前不需要编写core/config.py，请移除config.py文件
+3.logger.py中需要读取yaml的地方直接在logger.py中实现，不需要单独写个py文件用来实现
+4.logger.py默认读取项目根目录下的configs中的config_{env}.yml，如果没有配置env，则默认是dev环境。
+
+@logger.py 
+1.生成一个全局变量logger供其他模块调用
+2.生成if __name__=='main'函数，在代码内进行测试
+
+安装yaml依赖库
+
+@app 为app目录下的每个子目录添加一个__init__.py
+
+__init__.py文件目前不需要添加代码，只要创建以及添加注释即可
+
+@examples 创建一个日志调用示例，包含debug、info、warning、error、critical、结构化、异常、日志文件切割、异步写入
+
+
+以设置Python Path的方式运行
+
+这个没有按照想象中的输出
