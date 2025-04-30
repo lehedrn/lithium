@@ -78,3 +78,34 @@ __init__.py文件目前不需要添加代码，只要创建以及添加注释即
 日志输出的{name}:{function}:{line}有问题，都是输出logger中的输出位置，我希望输出的真实的代码输出位置
 
 配置文件的监视有问题，有文件发生变化，都会引起重新加载。实际上，只要configs文件夹下的config_{env}.yml发生变化才要重新加载。
+
+
+切换ASK模式，
+你觉得要做一个多智能体框架，应该如何实现
+
+
+切换Agent模式
+接下来，我们来实现Agent层：
+1.包名agents，在app/core下
+2.在包agents下创建空白的__init__.py
+
+@agents 编写ModelConfig和BaseAgent
+1.ModelConfig用于配置调用openai接口的关于大模型的各个参数
+2.BaseAgent，它是将来Agent的基类，
+3.BaseAgent的核心功能就是调用openai的接口
+4.需要考虑到流式和非流式响应
+5.BaseAgent需要考虑prompt属性
+6.需要考虑历史消息
+
+1.api_key，api_base，model应该都放在modelconfig中
+2.注意不要使用废弃的方法
+3.使用绝对路径而不是相对路径导包
+4.你又忘记将会话总结并记录到changelog.md文档的更新日志中
+
+1.api_key，api_base，model应该都放在modelconfig中
+2.注意不要使用废弃的方法
+3.使用绝对路径而不是相对路径导包
+4.你又忘记将会话总结并记录到changelog.md文档的更新日志中
+
+流失输出时候，是否有将结果记录到mssage中
+流失输出时候，是否有将结果记录到mssage中

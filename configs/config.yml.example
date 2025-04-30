@@ -38,4 +38,17 @@ log:
 agents:
   max_agents: 10
   timeout: 300  # 秒
-  retry_attempts: 3 
+  retry_attempts: 3
+
+# LLM配置
+llm:
+  # OpenAI API密钥
+  api_key: "your-api-key-here"
+  # OpenAI API基础URL（可选，用于使用代理或其他兼容的API）
+  api_base: "https://api.openai.com/v1"
+  # 使用的模型
+  model: "gpt-3.5-turbo"
+  # 采样温度
+  temperature: 0.7
+  # 是否启用流式响应
+  stream: true 

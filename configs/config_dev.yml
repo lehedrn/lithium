@@ -29,3 +29,7 @@ log:
     backtrace: true      # 异常回溯
     diagnose: true       # 诊断信息
 
+llm:
+  model: deepseek-v3
+  api_key: sk-b18ebf3d8df24140a63954df99974544
+  api_base: https://dashscope.aliyuncs.com/compatible-mode/v1
